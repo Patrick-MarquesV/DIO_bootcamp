@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class coresArcoIris {
+public class ExCoresArcoIris {
     public static void main(String[] args) {
         
         Set<ArcoIris> listaCores = new HashSet<>(){{
