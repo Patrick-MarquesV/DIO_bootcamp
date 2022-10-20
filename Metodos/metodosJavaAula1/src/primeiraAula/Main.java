@@ -1,4 +1,4 @@
-package primeiraAula;
+package DIO_bootcamp.Metodos.metodosJavaAula1.src.primeiraAula;
 
 public class Main {
     public static void main(String[] args){

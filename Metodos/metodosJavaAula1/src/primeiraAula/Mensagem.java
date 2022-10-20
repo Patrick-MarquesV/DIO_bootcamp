@@ -1,4 +1,4 @@
-package primeiraAula;
+package DIO_bootcamp.Metodos.metodosJavaAula1.src.primeiraAula;
 
 public class Mensagem {
     public static void obterMensagem(int hora){
