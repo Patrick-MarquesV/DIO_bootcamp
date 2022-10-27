@@ -1,7 +1,16 @@
-public class ContaPoupanca {
+public class ContaPoupanca extends Conta {
 
-    public int agencia;
-    public int numero;
-    public double saldo;
+    private static final String TIPOCONTA = "Poupança";
+
+    public ContaPoupanca(Cliente cliente) {
+        super(cliente);
+        super.tipoConta = TIPOCONTA;
+    }
+
+    @Override
+    public void imprimirExtrato() {
+        System.out.println("===Extrato Conta Poupança===");  
+        imprimirInfoConta();
+    }
 
 }

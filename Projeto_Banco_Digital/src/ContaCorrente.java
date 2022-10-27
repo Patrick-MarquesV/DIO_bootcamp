@@ -1,19 +1,16 @@
-public class ContaCorrente {
+public class ContaCorrente extends Conta {
+
+    private static final String TIPOCONTA = "Corrente";
  
-    public int agencia;
-    public int numero;
-    public double saldo;
-
-    public void sacar(){
-        
+    public ContaCorrente(Cliente cliente) {
+        super(cliente);
+        super.tipoConta = TIPOCONTA;
     }
 
-    public void depositar(){
-
-    }
-
-    public void transferir(){
-
+    @Override
+    public void imprimirExtrato() {
+        System.out.println("===Extrato Conta Corrente===");
+        imprimirInfoConta();
     }
 
 
