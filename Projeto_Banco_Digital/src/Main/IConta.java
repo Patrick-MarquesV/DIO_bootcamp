@@ -1,4 +1,6 @@
-public interface IConta {
+package Main;
+
+    public interface IConta {
     
     void sacar(double valor); 
     

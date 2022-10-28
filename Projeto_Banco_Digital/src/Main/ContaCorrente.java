@@ -1,3 +1,5 @@
+package Main;
+
 public class ContaCorrente extends Conta {
 
     private static final String TIPOCONTA = "Corrente";

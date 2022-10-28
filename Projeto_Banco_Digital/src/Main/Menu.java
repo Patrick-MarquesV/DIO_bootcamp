@@ -1,3 +1,5 @@
+package Main;
+
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -14,19 +16,20 @@ public class Menu {
     private static int SEQUENCIAL = 1;
 
     public static void exibir() {
-            System.out.println("==== Menu do cliente ====");
-            System.out.println("1 - Exibir extrato da conta");
-            System.out.println("2 - Listar contas");
-            System.out.println("3 - Depositar valor em conta");
-            System.out.println("4 - Sacar valor da conta");
-            System.out.println("5 - Transferir valor para conta");
-            System.out.println("6 - Cadastrar cliente");
-            System.out.println("7 - Abrir nova conta");
-            System.out.println("8 - Listar clientes");
-            System.out.println("9 - Sair...");
-            System.out.println();
             
-            avaliaEntrada(solicitaEntrada());
+        System.out.println("==== Menu do cliente ====");
+        System.out.println("1 - Exibir extrato da conta");
+        System.out.println("2 - Listar contas");
+        System.out.println("3 - Depositar valor em conta");
+        System.out.println("4 - Sacar valor da conta");
+        System.out.println("5 - Transferir valor para conta");
+        System.out.println("6 - Cadastrar cliente");
+        System.out.println("7 - Abrir nova conta");
+        System.out.println("8 - Listar clientes");
+        System.out.println("9 - Sair...");
+        System.out.println();
+        
+        avaliaEntrada(solicitaEntrada());
     }
 
     
@@ -146,16 +149,48 @@ public class Menu {
 
 
     private static void transferirValor() {
-    
-    
+        
+        System.out.println("==== Transferência ====");
+                
+        System.out.println("Insira o numero da sua conta: ");
+        int contaOrigem = input.nextInt();
+        input.nextLine();
+
+        System.out.println("Insira o valor a ser transferido: ");
+        int valor = input.nextInt();
+        input.nextLine();
+
+        System.out.println("Insira o numero da conta destino: ");
+        int contaDestino = input.nextInt();
+        input.nextLine();
+
+        contas.get(contaOrigem).transferir(valor, contas.get(contaDestino));
     }
 
 
     private static void sacarValor() {
+        System.out.println("==== Sacar Valor ====");
+        System.out.print("Digite o numero da conta: ");
+        int numeroConta = input.nextInt();
+        input.nextLine();
+        System.out.print("Digite o valor a ser sacado: ");
+        int valor = input.nextInt();
+        input.nextLine();
+
+        contas.get(numeroConta).sacar(valor);
+
     }
 
-
     private static void depositarValor() {
+        System.out.println("==== Depositar Valor ====");
+        System.out.print("Digite o numero da conta: ");
+        int numeroConta = input.nextInt();
+        input.nextLine();
+        System.out.print("Digite o valor a ser depositado: ");
+        int valor = input.nextInt();
+        input.nextLine();
+
+        contas.get(numeroConta).depositar(valor);
     }
 
 
