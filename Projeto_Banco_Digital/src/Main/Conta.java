@@ -1,5 +1,7 @@
 package Main;
 
+import java.io.*;
+
 public abstract class Conta implements IConta {
 
     private static final int AGENCIA_PADRAO = 1;
@@ -20,13 +22,15 @@ public abstract class Conta implements IConta {
     
     @Override
     public void sacar(double valor) {
-        
-        if(this.saldo < valor) 
-        System.out.println("Saldo Insuficiente!");
-        else{
+       try{
+           if(this.saldo < valor) throw new SaldoInsuficienteException();
+           
             this.saldo -= valor;        
             System.out.println("Saque efetuado!");
-        }
+
+       } catch (SaldoInsuficienteException e){
+            System.out.println("Saldo Insuficiente!");
+       }
         
     }
 
@@ -38,9 +42,16 @@ public abstract class Conta implements IConta {
     
     @Override
     public void transferir(double valor, Conta contaDestino) {
-        this.sacar(valor);
-        contaDestino.depositar(valor);        
-        System.out.println("Transferência concluída!");
+        
+        try{
+            if(this.saldo < valor) throw new SaldoInsuficienteException();
+
+            this.sacar(valor);
+            contaDestino.depositar(valor);        
+            System.out.println("Transferência concluída!");
+        }catch(SaldoInsuficienteException e){
+            System.out.println("Saldo Insuficiente!");
+        }
     }
     
     public int getAgencia() {
@@ -79,7 +90,7 @@ public abstract class Conta implements IConta {
         final int prime = 31;
         int result = 1;
         result = prime * result + agencia;
-        result = prime * result + numero;
+        result = prime * result +    numero;
         return result;
     }
 
@@ -98,5 +109,17 @@ public abstract class Conta implements IConta {
             return false;
         return true;
     }
+
+    class SaldoInsuficienteException extends Exception {
+
+        public SaldoInsuficienteException() {
+        }
+
+        @Override
+        public String toString() {
+            return "Saldo da conta insuficiente para esta operação!";
+        }
+    
+    }    
 
 }
