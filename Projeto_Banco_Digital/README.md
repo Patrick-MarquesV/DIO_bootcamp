@@ -2,7 +2,7 @@
 
 ## Proposta:
 
-Projeto sugerido pela equipe técnica da DIO, para criação de um banco digital utilizando os conhecimentos adiquiridos no Bootcamp Java nas disciplinas de Orientação a objetos, tratamento de exceções, framework Collections e testes unitários com JUnit.
+Projeto sugerido pela equipe técnica da DIO, para criação de um banco digital utilizando os conhecimentos adquiridos no Bootcamp Java nas disciplinas de Orientação a objetos, tratamento de exceções, framework Collections e testes unitários com JUnit.
 
 ## Conceitos:
 
