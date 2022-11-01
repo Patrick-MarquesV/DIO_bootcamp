@@ -18,3 +18,4 @@ Foram consideradas as seguintes funcionalidades:
 4. Transferência entre contas.
 5. Lista de clientes cadastrados.
 6. Lista de contas criadas.
+7. Menu para acesso as funções acima.
