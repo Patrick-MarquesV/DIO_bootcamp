@@ -1,5 +1,6 @@
 package Main;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -15,8 +16,14 @@ public class Menu {
     private static List<Conta> contas = new ArrayList<>();
     private static int SEQUENCIAL = 1;
 
-    public static void exibir() {
-            
+    public static void exibir(){
+        try {
+            LimpaConsole.limpar();
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
         System.out.println("==== Menu do cliente ====");
         System.out.println("1 - Exibir extrato da conta");
         System.out.println("2 - Listar contas");
@@ -32,70 +39,66 @@ public class Menu {
         avaliaEntrada(solicitaEntrada());
     }
 
-    
     private static int solicitaEntrada() {
-        
-        int opcaoDesejada = 0;
-        
         System.out.print("Digite a opção desejada: ");
-        
-        try{
-            opcaoDesejada = input.nextInt();
-            input.nextLine();
-        } catch(InputMismatchException e){
-            System.out.println("Por favor, insira um valor válido!");
-        }     
+        int opcaoDesejada = leValorInteiro();
+
         
         return opcaoDesejada;
         
     }
     
     private static void avaliaEntrada(int entrada) {
-        switch(entrada){
+        switch (entrada) {
             case 1:
                 exibirExtrato();
-                exibir();
+                pressEnterToContinue();
                 break;
-            case 2: 
+            case 2:
                 listarContas();
-                exibir();
+                pressEnterToContinue();
                 break;
-            case 3: 
+            case 3:
                 depositarValor();
-                exibir();
+                pressEnterToContinue();
                 break;
             case 4:
                 sacarValor();
-                exibir();
+                pressEnterToContinue();
                 break;
             case 5:
                 transferirValor();
-                exibir();
+                pressEnterToContinue();
                 break;
             case 6:
                 cadastrarCliente();
+                pressEnterToContinue();
                 exibir();
                 break;
             case 7:
                 abrirConta();
-                exibir();
+                pressEnterToContinue();
                 break;
             case 8:
                 listarClientes();
-                exibir();
+                pressEnterToContinue();
                 break;
             case 9:
                 System.out.println("Obrigado por utilizar nosso sistema!");
                 System.out.println("Tenha um bom dia!");
                 break;
+            default:
+                System.out.println("Opção inválida, por favor, tente novamente!");
+                pressEnterToContinue();
         }
+
     }
 
     private static void listarClientes() {
         System.out.println("==== Lista clientes cadastrados");
-        System.out.println("Número\t|\tNome");
+        System.out.printf("%-10s\t|\t%-10s\n", "Número", "Nome");
         for (Entry<Integer, Cliente> clientes : clientes.entrySet()) {
-            System.out.printf("%d\t|\t%s\n", clientes.getKey(), clientes.getValue().getNome());
+            System.out.printf("%-10d\t|\t%-10s\n", clientes.getKey(), clientes.getValue().getNome());
         }
         System.out.println();
     }
@@ -113,32 +116,31 @@ public class Menu {
         System.out.println("Informe o tipo de conta que deseja abrir: ");
         System.out.println("1 - Conta Corrente");
         System.out.println("2 - Conta Poupança");
-
-        int opcaoDesejada=0;
-        
-        try{
-            opcaoDesejada = input.nextInt();
-            input.nextLine();
-        } catch(InputMismatchException e){
-            System.out.println("Por favor, insira um valor válido!");
-        }     
+        System.out.println("3 - Voltar");
+        int opcaoDesejada=leValorInteiro();
         
         switch(opcaoDesejada){
             case 1:
                 System.out.println("==== Cadastro de conta corrente ====");
                 System.out.print("Digite o número do cliente: ");
-                int numeroCliente = input.nextInt();
-                input.nextLine();
+
+                int numeroCliente = leValorInteiro();
+
                 contas.add(new ContaCorrente(clientes.get(numeroCliente)));
+
                 System.out.println("Conta criada com sucesso!");
                 break;
             case 2: 
                 System.out.println("==== Cadastro de conta poupança ====");
                 System.out.print("Digite o número do cliente: ");
-                numeroCliente = input.nextInt();
-                input.nextLine();
+
+                numeroCliente = leValorInteiro();
+
                 contas.add(new ContaPoupanca(clientes.get(numeroCliente)));
+
                 System.out.println("Conta criada com sucesso!");
+                break;
+            case 3:
                 break;
             default:
                 System.out.println("Insira um valor válido!");
@@ -153,29 +155,30 @@ public class Menu {
         System.out.println("==== Transferência ====");
                 
         System.out.println("Insira o numero da sua conta: ");
-        int contaOrigem = input.nextInt();
-        input.nextLine();
+
+        int contaOrigem = leValorInteiro()-1;
 
         System.out.println("Insira o valor a ser transferido: ");
-        int valor = input.nextInt();
-        input.nextLine();
+
+        int valor = leValorInteiro();
 
         System.out.println("Insira o numero da conta destino: ");
-        int contaDestino = input.nextInt();
-        input.nextLine();
+
+        int contaDestino = leValorInteiro()-1;
 
         contas.get(contaOrigem).transferir(valor, contas.get(contaDestino));
     }
 
 
     private static void sacarValor() {
-        System.out.println("==== Sacar Valor ====");
+        System.out.println("==== Sacar Valor ====");    
         System.out.print("Digite o numero da conta: ");
-        int numeroConta = input.nextInt();
-        input.nextLine();
+
+        int numeroConta = leValorInteiro()-1;
+
         System.out.print("Digite o valor a ser sacado: ");
-        int valor = input.nextInt();
-        input.nextLine();
+
+        int valor = leValorInteiro();
 
         contas.get(numeroConta).sacar(valor);
 
@@ -184,19 +187,19 @@ public class Menu {
     private static void depositarValor() {
         System.out.println("==== Depositar Valor ====");
         System.out.print("Digite o numero da conta: ");
-        int numeroConta = input.nextInt();
-        input.nextLine();
+
+        int numeroConta = leValorInteiro()-1;
+
         System.out.print("Digite o valor a ser depositado: ");
-        int valor = input.nextInt();
-        input.nextLine();
+
+        int valor = leValorInteiro();
 
         contas.get(numeroConta).depositar(valor);
     }
 
-
     private static void listarContas() {
         System.out.println("==== Lista clientes cadastrados");
-        System.out.println("Agencia\t|\tNumero\t|\tSaldo\t|\tCliente\t|\tTipo de Conta");
+        System.out.printf("%-10s\t|\t%-10s\t|\t%-10s\t|\t%-10s\t|\t%-10s\n","Agencia", "Numero", "Saldo", "Cliente", "Tipo de Conta");
         for (Conta conta : contas) {
             System.out.println(conta.toString());
         }
@@ -204,12 +207,39 @@ public class Menu {
 
     }
 
-
     private static void exibirExtrato() {
+
+
+
     }
-    
-    
 
+    private static void pressEnterToContinue()
+    {
+        System.out.println("Pressione Enter para continuar...");
+        try
+        {
+            System.in.read();
+            input.nextLine();
+        } catch(Exception e)
+        {
+            System.out.println("Algo deu errado!");
+        }
+    }
 
+    private static int leValorInteiro(){
+
+        int valor=0;
+
+        try{
+            valor = input.nextInt();
+            input.nextLine();
+        } catch(InputMismatchException e){
+            System.out.println("Por favor, insira um valor válido!");
+            input.nextLine();
+        }
+
+        return valor;
+
+    }
 
 }

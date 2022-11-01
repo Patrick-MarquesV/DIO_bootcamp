@@ -81,8 +81,10 @@ public abstract class Conta implements IConta {
 
     @Override
     public String toString() {
-        return agencia + "\t|\t" + numero + "\t|\t" + saldo + "\t|\t" + cliente.getNome()   
-                + "\t|\t" + tipoConta;
+        return String.format("%-10s\t|\t%-10s\t|\t%-10s\t|\t%-10s\t|\t%-10s", agencia, numero, saldo, cliente.getNome(), tipoConta);
+
+//        return agencia + "\t|\t" + numero + "\t|\t" + saldo + "\t|\t" + cliente.getNome()
+//                + "\t|\t" + tipoConta;
     }
 
     @Override
