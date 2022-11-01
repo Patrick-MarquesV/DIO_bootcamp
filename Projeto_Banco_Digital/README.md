@@ -1,18 +1,20 @@
-## Getting Started
+# **Projeto Banco Digital**
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+## Proposta:
 
-## Folder Structure
+Projeto sugerido pela equipe técnica da DIO, para criação de um banco digital utilizando os conhecimentos adiquiridos no Bootcamp Java nas disciplinas de Orientação a objetos, tratamento de exceções, framework Collections e testes unitários com JUnit.
 
-The workspace contains two folders by default, where:
+## Conceitos:
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+Para construção desse projeto foram utilizados os conceitos de Abstração, Encapsulamento, Herança e Polimorfismo.
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+## Funcionalidades:
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+Foram consideradas as seguintes funcionalidades:
 
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+1. Criação de contas corrente e poupança.
+2. Deposito.
+3. Saque.
+4. Transferência entre contas.
+5. Lista de clientes cadastrados.
+6. Lista de contas criadas.
