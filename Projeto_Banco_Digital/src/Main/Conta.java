@@ -1,7 +1,5 @@
 package Main;
 
-import java.io.*;
-
 public abstract class Conta implements IConta {
 
     private static final int AGENCIA_PADRAO = 1;

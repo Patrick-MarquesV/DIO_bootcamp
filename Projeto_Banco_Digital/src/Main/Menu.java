@@ -25,65 +25,65 @@ public class Menu {
             e.printStackTrace();
         }
         System.out.println("==== Menu do cliente ====");
-        System.out.println("1 - Exibir extrato da conta");
-        System.out.println("2 - Listar contas");
-        System.out.println("3 - Depositar valor em conta");
-        System.out.println("4 - Sacar valor da conta");
-        System.out.println("5 - Transferir valor para conta");
-        System.out.println("6 - Cadastrar cliente");
-        System.out.println("7 - Abrir nova conta");
-        System.out.println("8 - Listar clientes");
-        System.out.println("9 - Sair...");
+        System.out.println("1 - Cadastrar cliente");
+        System.out.println("2 - Listar clientes");
+        System.out.println("3 - Abrir nova conta");
+        System.out.println("4 - Listar contas");
+        System.out.println("5 - Depositar valor em conta");
+        System.out.println("6 - Sacar valor da conta");
+        System.out.println("7 - Transferir valor para conta");
+        System.out.println("8 - Sair...");
         System.out.println();
         
-        avaliaEntrada(solicitaEntrada());
+        int opcaoDesejada = solicitaEntrada();
+
+        avaliaEntrada(opcaoDesejada);
+
+        if(opcaoDesejada !=8){
+            exibir();
+        }
+        
     }
 
     private static int solicitaEntrada() {
-        System.out.print("Digite a opção desejada: ");
-        int opcaoDesejada = leValorInteiro();
+        System.out.print("Digite a opção desejada: ");    
 
+        int opcaoDesejada = leValorInteiro();
         
         return opcaoDesejada;
-        
     }
     
     private static void avaliaEntrada(int entrada) {
         switch (entrada) {
             case 1:
-                exibirExtrato();
+                cadastrarCliente();
                 pressEnterToContinue();
                 break;
             case 2:
-                listarContas();
-                pressEnterToContinue();
-                break;
-            case 3:
-                depositarValor();
-                pressEnterToContinue();
-                break;
-            case 4:
-                sacarValor();
-                pressEnterToContinue();
-                break;
-            case 5:
-                transferirValor();
-                pressEnterToContinue();
-                break;
-            case 6:
-                cadastrarCliente();
-                pressEnterToContinue();
-                exibir();
-                break;
-            case 7:
-                abrirConta();
-                pressEnterToContinue();
-                break;
-            case 8:
                 listarClientes();
                 pressEnterToContinue();
                 break;
-            case 9:
+            case 3:
+                abrirConta();
+                pressEnterToContinue();
+                break;
+            case 4:
+                listarContas();
+                pressEnterToContinue();
+                break;
+            case 5:
+                depositarValor();
+                pressEnterToContinue();
+                break;
+            case 6:
+                sacarValor();
+                pressEnterToContinue();
+                break;
+            case 7:
+                transferirValor();
+                pressEnterToContinue();
+                break;
+            case 8:
                 System.out.println("Obrigado por utilizar nosso sistema!");
                 System.out.println("Tenha um bom dia!");
                 break;
@@ -107,8 +107,7 @@ public class Menu {
     private static void cadastrarCliente() {
         System.out.print("Insira o nome do cliente: ");
         String nome = input.nextLine();
-        clientes.put(SEQUENCIAL++, new Cliente(nome));        
-        exibir();
+        clientes.put(SEQUENCIAL++, new Cliente(nome));
     }
 
 
@@ -198,18 +197,12 @@ public class Menu {
     }
 
     private static void listarContas() {
-        System.out.println("==== Lista clientes cadastrados");
+        System.out.println("==== Lista clientes cadastrados ====");
         System.out.printf("%-10s\t|\t%-10s\t|\t%-10s\t|\t%-10s\t|\t%-10s\n","Agencia", "Numero", "Saldo", "Cliente", "Tipo de Conta");
         for (Conta conta : contas) {
             System.out.println(conta.toString());
         }
         System.out.println();
-
-    }
-
-    private static void exibirExtrato() {
-
-
 
     }
 
